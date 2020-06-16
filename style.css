@@ -1,0 +1,37 @@
+/* adds the super smash font for use */
+@font-face {
+    font-family: super-smash;
+    src: url("super_smash.ttf");
+}
+
+/* 
+Transform style and transition of the card class allows for that flipping effect.
+Display flex is used so that order can be applied to cards for shuffling.
+*/
+
+.card {
+    transform-style: preserve-3d;
+    transition: all 0.5s ease;
+    display: flex;
+}
+
+.text {
+    font-family: super-smash, sans-serif;
+}
+
+/* Tried to use the shuffling effect with the order like with the card class. Did not work. */
+
+.card-deck {
+    display: flex;
+}
+
+/* Hides the back and front sides of the card when flipped. */
+
+.front {
+    backface-visibility: hidden;
+}
+
+.back {
+    backface-visibility: hidden;
+    transform: rotateY(-180deg);
+}
