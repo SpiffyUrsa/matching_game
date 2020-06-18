@@ -78,7 +78,7 @@ function handleCheck (first, second) {
             if (totalClicks < parseInt(localStorage.getItem("bestScore")) || localStorage.getItem("bestScore") === null) {
                 localStorage.setItem("bestScore", totalClicks.toString());
                 document.getElementById("best").innerHTML = `Best Score: ${localStorage.getItem("bestScore")}`;
-                newSound.play();
+                setTimeout(function () { newSound.play() }, 3000);
             }
         }
     } else {
