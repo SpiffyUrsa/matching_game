@@ -122,6 +122,7 @@ function handleNewGame () {
     document.getElementById("score").innerText = `Score: 0`;
     totalClicks = 0;
     matchedPairs = 0;
+    clickCount = 0;
     used = [];
     handleShuffle();
     clearTimeout(flipTimeout);
