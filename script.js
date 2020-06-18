@@ -16,6 +16,15 @@ var flipSound = new Audio("cardflip.mp3");
 var welcomeSound = new Audio("start.wav");
 var winSound = new Audio("win.wav");
 var newSound = new Audio("newrecord.wav");
+var mario = new Audio("mario.wav");
+var donkeyKong = new Audio("donkeykong.wav");
+var fox = new Audio("fox.wav");
+var kirby = new Audio("kirby.wav");
+var link = new Audio("link.wav");
+var marth = new Audio("marth.wav");
+var pikachu = new Audio("pikachu.wav");
+var samus = new Audio("samus.wav");
+var yoshi = new Audio("yoshi.wav");
 // Adds the handle click function to every card via link.
 var cardLinks = document.getElementsByClassName("stretched-link");
 document.getElementById("newGame").addEventListener("click", handleNewGame);
@@ -40,17 +49,60 @@ function handleClick (event) {
         totalClicks++;
         clickCount++;
         document.getElementById("score").innerText = `Score: ${totalClicks}`;
-        flipSound.play();
+        handleSound(id);
     };
     if (clickCount === 1 && firstCard !== id && !used.includes(id)) { 
         secondCard = id;
         totalClicks++; 
         clickCount++;
         document.getElementById("score").innerText = `Score: ${totalClicks}`;
-        flipSound.play();
+        handleSound(id);
     };
     if (clickCount === 2) {
         handleCheck(firstCard, secondCard);
+    }
+}
+
+function handleSound (id) {
+    switch (id) {
+        case "1":
+        case "16":
+            mario.play();
+            break;
+        case "2":
+        case "11":
+            link.play();
+            break;
+        case "3":
+        case "15":
+            kirby.play();
+            break;
+        case "4":
+        case "10":
+            fox.play();
+            break;
+        case "5":
+        case "12":
+            samus.play();
+            break;
+        case "6":
+        case "13":
+            yoshi.play();
+            break;
+        case "7":
+        case "14":
+            marth.play();
+            break;
+        case "8":
+        case "9":
+            pikachu.play();
+            break;
+        case "17":
+        case "18":
+            donkeyKong.play();
+            break;
+        default:
+            break;            
     }
 }
 
