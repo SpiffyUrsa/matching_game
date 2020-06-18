@@ -11,6 +11,11 @@ var flipTimeout;
 var matchedPairs = 0;
 // Tracks the cards that have already been flipped over.
 var used = [];
+// Sounds used throughout the page. 
+var flipSound = new Audio("cardflip.mp3");
+var welcomeSound = new Audio("start.wav");
+var winSound = new Audio("win.wav");
+var newSound = new Audio("newrecord.wav");
 // Adds the handle click function to every card via link.
 var cardLinks = document.getElementsByClassName("stretched-link");
 document.getElementById("newGame").addEventListener("click", handleNewGame);
@@ -35,12 +40,14 @@ function handleClick (event) {
         totalClicks++;
         clickCount++;
         document.getElementById("score").innerText = `Score: ${totalClicks}`;
+        flipSound.play();
     };
     if (clickCount === 1 && firstCard !== id && !used.includes(id)) { 
         secondCard = id;
         totalClicks++; 
         clickCount++;
         document.getElementById("score").innerText = `Score: ${totalClicks}`;
+        flipSound.play();
     };
     if (clickCount === 2) {
         handleCheck(firstCard, secondCard);
@@ -67,9 +74,11 @@ function handleCheck (first, second) {
             finishedDiv.classList.add("alert-success");
             finishedDiv.innerHTML = "<b>Congratulations!</b> You matched them all!";
             document.querySelector("header").appendChild(finishedDiv);
+            winSound.play();
             if (totalClicks < parseInt(localStorage.getItem("bestScore")) || localStorage.getItem("bestScore") === null) {
                 localStorage.setItem("bestScore", totalClicks.toString());
                 document.getElementById("best").innerHTML = `Best Score: ${localStorage.getItem("bestScore")}`;
+                newSound.play();
             }
         }
     } else {
@@ -80,6 +89,7 @@ function handleCheck (first, second) {
             Array.from(cardLinks).forEach(link => link.addEventListener("click", handleClick));
             document.getElementById(first).style.transform = ""; 
             document.getElementById(second).style.transform = "";
+            flipSound.play();
             }, 1500);
         clickCount = 0;
         firstCard = "";
@@ -115,5 +125,6 @@ function handleNewGame () {
     used = [];
     handleShuffle();
     clearTimeout(flipTimeout);
+    welcomeSound.play();
 }
 
